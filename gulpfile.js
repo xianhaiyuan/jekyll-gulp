@@ -139,8 +139,10 @@ var htmltask = {
   }
 };
 
-htmltask.dev('include:dev', '_includes/*.html', '_site/_includes');
-htmltask.build('include:build', '_site/_includes/*.html', '_includes');
+htmltask.dev('includes:dev', '_includes/*.html', '_site/_includes');
+htmltask.dev('layouts:dev', '_layouts/*.html', '_site/_layouts');
+htmltask.build('layouts:build', '_site/_layouts/*.html', '_layouts');
+htmltask.build('includes:build', '_site/_includes/*.html', '_includes');
 htmltask.build('star:build', '_site/star/*.html', 'star');
 htmltask.build('blog:build', '_site/blog/*.html', 'blog');
 
@@ -169,7 +171,8 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
                    'css_com:dev', 
                    'js:dev',
                    'js_com:dev',
-                   'include:dev',
+                   'includes:dev',
+                   'layouts:dev',
                    'img:dev',
                    'font:dev',
                    'font_icon:dev']);
@@ -182,7 +185,6 @@ gulp.task('watch', function () {
     gulp.watch('src/js/*.js', ['js:dev']);
     gulp.watch('src/js/common/*.js', ['js_com:dev']);
     gulp.watch('img/*', ['img:dev']);
-    gulp.watch('_layouts/*.html', ['include:dev']);
     gulp.watch(['*.html',
                 '_layouts/*.html',
                 '_posts/*', 
@@ -199,12 +201,14 @@ gulp.task('default', $.sequence( 'browser-sync',
                                 'css_com:dev', 
                                 'js:dev',
                                 'js_com:dev',
-                                'include:dev',
+                                'includes:dev',
+                                'layouts:dev',
                                 'img:dev'],
                                 'watch'));
 
 gulp.task('build', $.sequence('img:build',
                               'img_icon:build',
-                              'include:build',
+                              'includes:build',
+                              'layouts:build',
                               'star:build',
                               'blog:build'));
