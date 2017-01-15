@@ -1,0 +1,16 @@
+name: Your New Jekyll Site
+author: 
+url:
+  email:
+markdown: kramdown
+paginate_path: "/page:num/"
+baseurl: /
+exclude: ["node_modules", "gulpfile.js", "package.json", '_site']
+gems:
+  - jekyll-paginate
+defaults:
+-
+  values:
+    layout: "post"
+
+
